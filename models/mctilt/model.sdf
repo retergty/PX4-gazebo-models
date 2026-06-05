@@ -1,0 +1,665 @@
+<sdf version='1.11'>
+  <model name='MCTilt'>
+    <link name='base_link'>
+      <inertial>
+        <pose>0.027452000000000001 0.0004910500450304307 0.50084027997368474 0 0 0</pose>
+        <mass>11</mass>
+        <inertia>
+          <ixx>0.5</ixx>
+          <ixy>-0.002301599999599837</ixy>
+          <ixz>7.4672233422723444e-06</ixz>
+          <iyy>0.52999999999886116</iyy>
+          <iyz>-1.0614171776526529e-05</iyz>
+          <izz>0.90000000000113878</izz>
+        </inertia>
+      </inertial>
+      <collision name='base_link_fixed_joint_lump__drone_link_collision'>
+        <pose>0 0 0.5 3.1415926000000001 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://mctilt/description/meshes/base_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='base_link_fixed_joint_lump__drone_link_visual'>
+        <pose>0 0 0.5 3.1415926000000001 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://mctilt/description/meshes/base_link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1 0 0.0343137495 1</diffuse>
+          <ambient>1 0 0.0343137495 1</ambient>
+        </material>
+      </visual>
+      <sensor name='imu_sensor' type='imu'>
+        <always_on>true</always_on>
+        <update_rate>250</update_rate>
+        <imu>
+          <angular_velocity>
+            <x>
+              <noise type='gaussian'>
+                <mean>0</mean>
+                <stddev>0.00018665000000000001</stddev>
+                <dynamic_bias_stddev>3.8785000000000002e-05</dynamic_bias_stddev>
+                <dynamic_bias_correlation_time>1000</dynamic_bias_correlation_time>
+              </noise>
+            </x>
+            <y>
+              <noise type='gaussian'>
+                <mean>0</mean>
+                <stddev>0.00018665000000000001</stddev>
+                <dynamic_bias_stddev>3.8785000000000002e-05</dynamic_bias_stddev>
+                <dynamic_bias_correlation_time>1000</dynamic_bias_correlation_time>
+              </noise>
+            </y>
+            <z>
+              <noise type='gaussian'>
+                <mean>0</mean>
+                <stddev>0.00018665000000000001</stddev>
+                <dynamic_bias_stddev>3.8785000000000002e-05</dynamic_bias_stddev>
+                <dynamic_bias_correlation_time>1000</dynamic_bias_correlation_time>
+              </noise>
+            </z>
+          </angular_velocity>
+          <linear_acceleration>
+            <x>
+              <noise type='gaussian'>
+                <mean>0</mean>
+                <stddev>0.0018600000000000001</stddev>
+                <dynamic_bias_stddev>0.0060000000000000001</dynamic_bias_stddev>
+                <dynamic_bias_correlation_time>300</dynamic_bias_correlation_time>
+              </noise>
+            </x>
+            <y>
+              <noise type='gaussian'>
+                <mean>0</mean>
+                <stddev>0.0018600000000000001</stddev>
+                <dynamic_bias_stddev>0.0060000000000000001</dynamic_bias_stddev>
+                <dynamic_bias_correlation_time>300</dynamic_bias_correlation_time>
+              </noise>
+            </y>
+            <z>
+              <noise type='gaussian'>
+                <mean>0</mean>
+                <stddev>0.0018600000000000001</stddev>
+                <dynamic_bias_stddev>0.0060000000000000001</dynamic_bias_stddev>
+                <dynamic_bias_correlation_time>300</dynamic_bias_correlation_time>
+              </noise>
+            </z>
+          </linear_acceleration>
+        </imu>
+        <pose>0 0 0.5 0 0 0</pose>
+      </sensor>
+      <sensor name='air_pressure_sensor' type='air_pressure'>
+        <always_on>true</always_on>
+        <update_rate>50</update_rate>
+        <air_pressure>
+          <pressure>
+            <noise type='gaussian'>
+              <mean>0</mean>
+              <stddev>0.01</stddev>
+            </noise>
+          </pressure>
+        </air_pressure>
+        <pose>0 0 0.5 0 0 0</pose>
+      </sensor>
+      <sensor name='navsat_sensor' type='navsat'>
+        <always_on>true</always_on>
+        <update_rate>30</update_rate>
+        <pose>0 0 0.5 0 0 0</pose>
+      </sensor>
+    </link>
+    <joint name='servoJoint1' type='revolute'>
+      <pose relative_to='base_link'>0.34150000000000003 -0.42158686875186091 0.51455002259275318
+        1.570796280384771 2.6794896551551876e-08 0.52359877559829127</pose>
+      <parent>base_link</parent>
+      <child>servo_link1</child>
+      <axis>
+        <xyz>0.499999999999996 0 -0.86602540378444104</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <damping>2.5</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='servo_link1'>
+      <pose relative_to='servoJoint1'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-0.030394161084991801 0.044362800205073799 0.052644161866179998 0 0 0</pose>
+        <mass>0.2045176204237</mass>
+        <inertia>
+          <ixx>0.00011676716266782799</ixx>
+          <ixy>-3.1115573759172102e-10</ixy>
+          <ixz>1.14796079722263e-06</ixz>
+          <iyy>0.00019759165397287</iyy>
+          <iyz>3.3602938703528702e-10</iyz>
+          <izz>0.000115441392663724</izz>
+        </inertia>
+      </inertial>
+      <collision name='servo_link1_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://mctilt/description/meshes/servo_link1.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='servo_link1_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://mctilt/description/meshes/servo_link1.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.990196109 1 1 1</diffuse>
+          <ambient>0.990196109 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='prop_joint1' type='revolute'>
+      <pose relative_to='servo_link1'>-0.0303940652342033 0.0500859736898727 0.052644065234203702
+        -1.5707963000000003 -0.00180987006866113 0</pose>
+      <parent>servo_link1</parent>
+      <child>prop1</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='prop1'>
+      <pose relative_to='prop_joint1'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>3.0867990108429699e-09 0.0139527069710401 -3.4171043772346399e-09 1.5707963000000003 0
+          0</pose>
+        <mass>0.072762177004198902</mass>
+        <inertia>
+          <ixx>0.00216701471430116</ixx>
+          <ixy>-4.74342285086133e-14</ixy>
+          <ixz>7.2218875412027094e-05</ixz>
+          <iyy>0.0021751198716782501</iyy>
+          <iyz>5.8800230606604699e-14</iyz>
+          <izz>9.3603438107692799e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='prop1_collision'>
+        <pose>0 0 0 1.5707963000000003 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://mctilt/description/meshes/prop1.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='prop1_visual'>
+        <pose>0 0 0 1.5707963000000003 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://mctilt/description/meshes/prop1.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.799019635 0.769607902 0.75000006 1</diffuse>
+          <ambient>0.799019635 0.769607902 0.75000006 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='servoJoint2' type='revolute'>
+      <pose relative_to='base_link'>-0.34150000000000003 0.42683687031132378 0.51454997712590045
+        1.570796280384771 2.6794896551551876e-08 0.52359877559829127</pose>
+      <parent>base_link</parent>
+      <child>servo_link2</child>
+      <axis>
+        <xyz>0.499999999999995 0 -0.86602540378444104</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <damping>2.5</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='servo_link2'>
+      <pose relative_to='servoJoint2'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.030393969383415001 0.044362800205073799 -0.0526439686022276 0 0 0</pose>
+        <mass>0.204517620423701</mass>
+        <inertia>
+          <ixx>0.00011676716266782799</ixx>
+          <ixy>-3.1115573760911399e-10</ixy>
+          <ixz>1.14796079722276e-06</ixz>
+          <iyy>0.00019759165397287</iyy>
+          <iyz>3.3602938703319901e-10</iyz>
+          <izz>0.000115441392663724</izz>
+        </inertia>
+      </inertial>
+      <collision name='servo_link2_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://mctilt/description/meshes/servo_link2.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='servo_link2_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://mctilt/description/meshes/servo_link2.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.990196109 1 1 1</diffuse>
+          <ambient>0.990196109 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='prop_joint2' type='revolute'>
+      <pose relative_to='servo_link2'>0.0303940652342033 0.050085973689872797 -0.052644065234203702
+        -1.5707963 0.18952959701793301 1.413082904031325e-17</pose>
+      <parent>servo_link2</parent>
+      <child>prop2</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='prop2'>
+      <pose relative_to='prop_joint2'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>3.7681505693498699e-09 0.013952818399974001 -3.8498872978465199e-09 1.5707963000000003
+          0 0</pose>
+        <mass>0.072764668272949501</mass>
+        <inertia>
+          <ixx>0.0021670147183279801</ixx>
+          <ixy>-1.8902575953538199e-13</ixy>
+          <ixz>7.2218861755525004e-05</ixz>
+          <iyy>0.0021751198746171102</iyy>
+          <iyz>1.8643502885731999e-13</iyz>
+          <izz>9.3603414076551105e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='prop2_collision'>
+        <pose>0 0 0 1.5707963000000003 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://mctilt/description/meshes/prop2.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='prop2_visual'>
+        <pose>0 0 0 1.5707963000000003 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://mctilt/description/meshes/prop2.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.799019635 0.769607902 0.75000006 1</diffuse>
+          <ambient>0.799019635 0.769607902 0.75000006 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='servoJoint3' type='revolute'>
+      <pose relative_to='base_link'>0.34150000000000003 0.42683687031132278 0.51454997712590045
+        1.5707962803847713 2.67948965237963e-08 0.52359877559829948</pose>
+      <parent>base_link</parent>
+      <child>servo_link3</child>
+      <axis>
+        <xyz>0.500000000000001 0 -0.86602540378443804</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <damping>2.5</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='servo_link3'>
+      <pose relative_to='servoJoint3'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.0303939693834154 0.044362800205073799 -0.052643968602227399 0 0 0</pose>
+        <mass>0.204517620423701</mass>
+        <inertia>
+          <ixx>0.00011676716266782799</ixx>
+          <ixy>-3.11155737604026e-10</ixy>
+          <ixz>1.14796079722276e-06</ixz>
+          <iyy>0.00019759165397287</iyy>
+          <iyz>3.3602938703638102e-10</iyz>
+          <izz>0.000115441392663724</izz>
+        </inertia>
+      </inertial>
+      <collision name='servo_link3_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://mctilt/description/meshes/servo_link3.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='servo_link3_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://mctilt/description/meshes/servo_link3.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.990196109 1 1 1</diffuse>
+          <ambient>0.990196109 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='prop_joint3' type='revolute'>
+      <pose relative_to='servo_link3'>0.030394065234204001 0.050085974728011198
+        -0.052644065234203598 -1.5707963 -0.52359877559830015 -6.4098756212785522e-17</pose>
+      <parent>servo_link3</parent>
+      <child>prop3</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='prop3'>
+      <pose relative_to='prop_joint3'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>3.1377229148255001e-09 0.013952877366110301 2.4213650529070199e-09 1.5707963000000003
+          0 0</pose>
+        <mass>0.072767849642281501</mass>
+        <inertia>
+          <ixx>0.0021668533210580099</ixx>
+          <ixy>-4.86407508772476e-14</ixy>
+          <ixz>-7.2227415343871395e-05</ixz>
+          <iyy>0.0021749597734904802</iyy>
+          <iyz>-6.2438276025275701e-14</iyz>
+          <izz>9.3617923756397901e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='prop3_collision'>
+        <pose>0 0 0 1.5707963000000003 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://mctilt/description/meshes/prop3.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='prop3_visual'>
+        <pose>0 0 0 1.5707963000000003 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://mctilt/description/meshes/prop3.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.990196109 1 1 1</diffuse>
+          <ambient>0.990196109 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='servoJoint4' type='revolute'>
+      <pose relative_to='base_link'>-0.34150000000000003 -0.42158686875186091 0.51455002259275318
+        1.570796280384771 2.6794896551551876e-08 0.52359877559829127</pose>
+      <parent>base_link</parent>
+      <child>servo_link4</child>
+      <axis>
+        <xyz>0.499999999999995 0 -0.86602540378444104</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <damping>2.5</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='servo_link4'>
+      <pose relative_to='servoJoint4'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-0.030394161084991701 0.044362800205073799 0.052644161866179998 0 0 0</pose>
+        <mass>0.204517620423701</mass>
+        <inertia>
+          <ixx>0.00011676716266782799</ixx>
+          <ixy>-3.11155737595278e-10</ixy>
+          <ixz>1.14796079722271e-06</ixz>
+          <iyy>0.00019759165397287</iyy>
+          <iyz>3.3602938703834702e-10</iyz>
+          <izz>0.000115441392663724</izz>
+        </inertia>
+      </inertial>
+      <collision name='servo_link4_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://mctilt/description/meshes/servo_link4.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='servo_link4_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://mctilt/description/meshes/servo_link4.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.990196109 1 1 1</diffuse>
+          <ambient>0.990196109 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='prop_joint4' type='revolute'>
+      <pose relative_to='servo_link4'>-0.030394065234203502 0.050085974728011302
+        0.052644065234203799 -1.5707963 -0.81414466647190353 -8.086221718363927e-17</pose>
+      <parent>servo_link4</parent>
+      <child>prop4</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='prop4'>
+      <pose relative_to='prop_joint4'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>2.4743714577279999e-09 0.0139529396951849 2.6727747792776301e-09 1.5707963000000003 0
+          0</pose>
+        <mass>0.072766996821120006</mass>
+        <inertia>
+          <ixx>0.00216683771147092</ixx>
+          <ixy>4.7803281297555801e-14</ixy>
+          <ixz>-7.2224978952527906e-05</ixz>
+          <iyy>0.0021749436996880301</iyy>
+          <iyz>1.702798141578e-14</iyz>
+          <izz>9.36126384583394e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='prop4_collision'>
+        <pose>0 0 0 1.5707963000000003 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://mctilt/description/meshes/prop4.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='prop4_visual'>
+        <pose>0 0 0 1.5707963000000003 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://mctilt/description/meshes/prop4.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.990196109 1 1 1</diffuse>
+          <ambient>0.990196109 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <plugin name='gz::sim::systems::MulticopterMotorModel'
+      filename='gz-sim-multicopter-motor-model-system'>
+      <jointName>prop_joint1</jointName>
+      <linkName>prop1</linkName>
+      <turningDirection>ccw</turningDirection>
+      <timeConstantUp>0.0125</timeConstantUp>
+      <timeConstantDown>0.025</timeConstantDown>
+      <maxRotVelocity>1000.0</maxRotVelocity>
+      <motorConstant>3e-04</motorConstant>
+      <momentConstant>0.029</momentConstant>
+      <commandSubTopic>command/motor_speed</commandSubTopic>
+      <motorNumber>0</motorNumber>
+      <rotorDragCoefficient>8.06428e-05</rotorDragCoefficient>
+      <rollingMomentCoefficient>8.7e-06</rollingMomentCoefficient>
+      <rotorVelocitySlowdownSim>20</rotorVelocitySlowdownSim>
+      <motorType>velocity</motorType>
+    </plugin>
+    <plugin name='gz::sim::systems::MulticopterMotorModel'
+      filename='gz-sim-multicopter-motor-model-system'>
+      <jointName>prop_joint2</jointName>
+      <linkName>prop2</linkName>
+      <turningDirection>ccw</turningDirection>
+      <timeConstantUp>0.0125</timeConstantUp>
+      <timeConstantDown>0.025</timeConstantDown>
+      <maxRotVelocity>1000.0</maxRotVelocity>
+      <motorConstant>3e-04</motorConstant>
+      <momentConstant>0.029</momentConstant>
+      <commandSubTopic>command/motor_speed</commandSubTopic>
+      <motorNumber>1</motorNumber>
+      <rotorDragCoefficient>8.06428e-05</rotorDragCoefficient>
+      <rollingMomentCoefficient>8.7e-06</rollingMomentCoefficient>
+      <rotorVelocitySlowdownSim>20</rotorVelocitySlowdownSim>
+      <motorType>velocity</motorType>
+    </plugin>
+    <plugin name='gz::sim::systems::MulticopterMotorModel'
+      filename='gz-sim-multicopter-motor-model-system'>
+      <jointName>prop_joint3</jointName>
+      <linkName>prop3</linkName>
+      <turningDirection>cw</turningDirection>
+      <timeConstantUp>0.0125</timeConstantUp>
+      <timeConstantDown>0.025</timeConstantDown>
+      <maxRotVelocity>1000.0</maxRotVelocity>
+      <motorConstant>3e-4</motorConstant>
+      <momentConstant>0.029</momentConstant>
+      <commandSubTopic>command/motor_speed</commandSubTopic>
+      <motorNumber>2</motorNumber>
+      <rotorDragCoefficient>8.06428e-05</rotorDragCoefficient>
+      <rollingMomentCoefficient>8.7e-06</rollingMomentCoefficient>
+      <rotorVelocitySlowdownSim>20</rotorVelocitySlowdownSim>
+      <motorType>velocity</motorType>
+    </plugin>
+    <plugin name='gz::sim::systems::MulticopterMotorModel'
+      filename='gz-sim-multicopter-motor-model-system'>
+      <jointName>prop_joint4</jointName>
+      <linkName>prop4</linkName>
+      <turningDirection>cw</turningDirection>
+      <timeConstantUp>0.0125</timeConstantUp>
+      <timeConstantDown>0.025</timeConstantDown>
+      <maxRotVelocity>1000.0</maxRotVelocity>
+      <motorConstant>3e-4</motorConstant>
+      <momentConstant>0.029</momentConstant>
+      <commandSubTopic>command/motor_speed</commandSubTopic>
+      <motorNumber>3</motorNumber>
+      <rotorDragCoefficient>8.06428e-05</rotorDragCoefficient>
+      <rollingMomentCoefficient>8.7e-06</rollingMomentCoefficient>
+      <rotorVelocitySlowdownSim>20</rotorVelocitySlowdownSim>
+      <motorType>velocity</motorType>
+    </plugin>
+    <plugin name='gz::sim::systems::JointStatePublisher'
+      filename='gz-sim-joint-state-publisher-system' />
+    <plugin name='gz::sim::systems::JointPositionController'
+      filename='gz-sim-joint-position-controller-system'>
+      <joint_name>servoJoint1</joint_name>
+      <initial_position>0</initial_position>
+      <p_gain>7</p_gain>
+      <sub_topic>servo_0</sub_topic>
+    </plugin>
+    <plugin name='gz::sim::systems::JointPositionController'
+      filename='gz-sim-joint-position-controller-system'>
+      <joint_name>servoJoint2</joint_name>
+      <initial_position>0</initial_position>
+      <p_gain>7</p_gain>
+      <sub_topic>servo_1</sub_topic>
+    </plugin>
+    <plugin name='gz::sim::systems::JointPositionController'
+      filename='gz-sim-joint-position-controller-system'>
+      <joint_name>servoJoint3</joint_name>
+      <initial_position>0</initial_position>
+      <p_gain>7</p_gain>
+      <sub_topic>servo_2</sub_topic>
+    </plugin>
+    <plugin name='gz::sim::systems::JointPositionController'
+      filename='gz-sim-joint-position-controller-system'>
+      <joint_name>servoJoint4</joint_name>
+      <initial_position>0</initial_position>
+      <p_gain>7</p_gain>
+      <sub_topic>servo_3</sub_topic>
+    </plugin>
+    <frame name='base_joint' attached_to='base_link'>
+      <pose>0 0 0.5 3.1415926000000001 0 0</pose>
+    </frame>
+    <frame name='drone_link' attached_to='base_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+  </model>
+</sdf>

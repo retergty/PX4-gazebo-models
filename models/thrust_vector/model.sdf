@@ -1,0 +1,1001 @@
+<sdf version='1.11'>
+  <model name='quad'>
+    <link name='base_link'>
+      <inertial>
+        <pose>0 0 0.52500000000000002 0 0 0</pose>
+        <mass>1.6</mass>
+        <inertia>
+          <ixx>0.001643958333333362</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.001643958333333362</iyy>
+          <iyz>0</iyz>
+          <izz>0.00274625</izz>
+        </inertia>
+      </inertial>
+      <collision name='base_link_fixed_joint_lump__drone_link_collision'>
+        <pose>0 0 0.52500000000000002 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.050000000000000003</length>
+            <radius>0.065000000000000002</radius>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name='base_link_fixed_joint_lump__drone_link_visual'>
+        <pose>0 0 0.52500000000000002 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.050000000000000003</length>
+            <radius>0.065000000000000002</radius>
+          </cylinder>
+        </geometry>
+        <material>
+          <diffuse>0 1 1 1</diffuse>
+          <ambient>0 1 1 1</ambient>
+        </material>
+      </visual>
+      <sensor name='imu_sensor' type='imu'>
+        <always_on>true</always_on>
+        <update_rate>250</update_rate>
+        <imu>
+          <angular_velocity>
+            <x>
+              <noise type='gaussian'>
+                <mean>0</mean>
+                <stddev>0.00018665000000000001</stddev>
+                <dynamic_bias_stddev>3.8785000000000002e-05</dynamic_bias_stddev>
+                <dynamic_bias_correlation_time>1000</dynamic_bias_correlation_time>
+              </noise>
+            </x>
+            <y>
+              <noise type='gaussian'>
+                <mean>0</mean>
+                <stddev>0.00018665000000000001</stddev>
+                <dynamic_bias_stddev>3.8785000000000002e-05</dynamic_bias_stddev>
+                <dynamic_bias_correlation_time>1000</dynamic_bias_correlation_time>
+              </noise>
+            </y>
+            <z>
+              <noise type='gaussian'>
+                <mean>0</mean>
+                <stddev>0.00018665000000000001</stddev>
+                <dynamic_bias_stddev>3.8785000000000002e-05</dynamic_bias_stddev>
+                <dynamic_bias_correlation_time>1000</dynamic_bias_correlation_time>
+              </noise>
+            </z>
+          </angular_velocity>
+          <linear_acceleration>
+            <x>
+              <noise type='gaussian'>
+                <mean>0</mean>
+                <stddev>0.0018600000000000001</stddev>
+                <dynamic_bias_stddev>0.0060000000000000001</dynamic_bias_stddev>
+                <dynamic_bias_correlation_time>300</dynamic_bias_correlation_time>
+              </noise>
+            </x>
+            <y>
+              <noise type='gaussian'>
+                <mean>0</mean>
+                <stddev>0.0018600000000000001</stddev>
+                <dynamic_bias_stddev>0.0060000000000000001</dynamic_bias_stddev>
+                <dynamic_bias_correlation_time>300</dynamic_bias_correlation_time>
+              </noise>
+            </y>
+            <z>
+              <noise type='gaussian'>
+                <mean>0</mean>
+                <stddev>0.0018600000000000001</stddev>
+                <dynamic_bias_stddev>0.0060000000000000001</dynamic_bias_stddev>
+                <dynamic_bias_correlation_time>300</dynamic_bias_correlation_time>
+              </noise>
+            </z>
+          </linear_acceleration>
+        </imu>
+        <pose>0 0 0.5 0 0 0</pose>
+      </sensor>
+      <sensor name='air_pressure_sensor' type='air_pressure'>
+        <always_on>true</always_on>
+        <update_rate>50</update_rate>
+        <air_pressure>
+          <pressure>
+            <noise type='gaussian'>
+              <mean>0</mean>
+              <stddev>0.01</stddev>
+            </noise>
+          </pressure>
+        </air_pressure>
+        <pose>0 0 0.5 0 0 0</pose>
+      </sensor>
+      <sensor name='navsat_sensor' type='navsat'>
+        <always_on>true</always_on>
+        <update_rate>30</update_rate>
+        <pose>0 0 0.5 0 0 0</pose>
+        <gps/>
+      </sensor>
+    </link>
+    <joint name='stickJoint0' type='revolute'>
+      <pose relative_to='base_link'>0.045961940765000001 0.045961940765000001 0.52500000000000002 -2.3561944901923448 -1.5707963267948966 0</pose>
+      <parent>base_link</parent>
+      <child>stick_link0</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <damping>1</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='stick_link0'>
+      <pose relative_to='stickJoint0'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0.050000000000000003 0 0 0</pose>
+        <mass>0.059999999999999998</mass>
+        <inertia>
+          <ixx>5.0843750000000013e-05</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>5.0843750000000013e-05</iyy>
+          <iyz>0</iyz>
+          <izz>1.6874999999999999e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='stick_link0_collision'>
+        <pose>0 0 0.050000000000000003 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.10000000000000001</length>
+            <radius>0.0074999999999999997</radius>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name='stick_link0_visual'>
+        <pose>0 0 0.050000000000000003 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.10000000000000001</length>
+            <radius>0.0074999999999999997</radius>
+          </cylinder>
+        </geometry>
+        <material>
+          <diffuse>0 1 1 1</diffuse>
+          <ambient>0 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='servoJoint0' type='revolute'>
+      <pose relative_to='stick_link0'>0 0 0.121 1.5707963267948959 0 0</pose>
+      <parent>stick_link0</parent>
+      <child>servo_link0</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <damping>1</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='servo_link0'>
+      <pose relative_to='servoJoint0'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>0.10000000000000001</mass>
+        <inertia>
+          <ixx>1.524375e-05</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1.524375e-05</iyy>
+          <iyz>0</iyz>
+          <izz>2.2050000000000001e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='servo_link0_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.022499999999999999</length>
+            <radius>0.021000000000000001</radius>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name='servo_link0_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.022499999999999999</length>
+            <radius>0.021000000000000001</radius>
+          </cylinder>
+        </geometry>
+        <material>
+          <diffuse>0 1 1 1</diffuse>
+          <ambient>0 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='rotorJoint0' type='revolute'>
+      <pose relative_to='servo_link0'>0.021000000000000001 0 0 0 1.5707963267948966 0</pose>
+      <parent>servo_link0</parent>
+      <child>rotor_link0</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <damping>1</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='rotor_link0'>
+      <pose relative_to='rotorJoint0'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0.01125 0 0 0</pose>
+        <mass>0.040000000000000001</mass>
+        <inertia>
+          <ixx>6.0974999999999996e-06</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>6.0974999999999996e-06</iyy>
+          <iyz>0</iyz>
+          <izz>8.8200000000000003e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='rotor_link0_collision'>
+        <pose>0 0 0.01125 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.022499999999999999</length>
+            <radius>0.021000000000000001</radius>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name='rotor_link0_visual'>
+        <pose>0 0 0.01125 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.022499999999999999</length>
+            <radius>0.021000000000000001</radius>
+          </cylinder>
+        </geometry>
+        <material>
+          <diffuse>0 1 1 1</diffuse>
+          <ambient>0 1 1 1</ambient>
+        </material>
+      </visual>
+      <visual name='rotor_link0_visual_1'>
+        <pose>0 0 0.0275 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.01 0.13 0.01</size>
+          </box>
+        </geometry>
+        <material>
+          <diffuse>1 0 1 0.5</diffuse>
+          <ambient>1 0 1 0.5</ambient>
+        </material>
+      </visual>
+      <visual name='rotor_link0_visual_2'>
+        <pose>0 0 0.0275 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.13 0.01 0.01</size>
+          </box>
+        </geometry>
+        <material>
+          <diffuse>0 0 1 0.5</diffuse>
+          <ambient>0 0 1 0.5</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='stickJoint1' type='revolute'>
+      <pose relative_to='base_link'>-0.045961940765000001 -0.045961940765000001 0.52500000000000002 0.78539816339744839 -1.5707963267948966 0</pose>
+      <parent>base_link</parent>
+      <child>stick_link1</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <damping>1</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='stick_link1'>
+      <pose relative_to='stickJoint1'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0.050000000000000003 0 0 0</pose>
+        <mass>0.059999999999999998</mass>
+        <inertia>
+          <ixx>5.0843750000000013e-05</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>5.0843750000000013e-05</iyy>
+          <iyz>0</iyz>
+          <izz>1.6874999999999999e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='stick_link1_collision'>
+        <pose>0 0 0.050000000000000003 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.10000000000000001</length>
+            <radius>0.0074999999999999997</radius>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name='stick_link1_visual'>
+        <pose>0 0 0.050000000000000003 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.10000000000000001</length>
+            <radius>0.0074999999999999997</radius>
+          </cylinder>
+        </geometry>
+        <material>
+          <diffuse>0 1 1 1</diffuse>
+          <ambient>0 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='servoJoint1' type='revolute'>
+      <pose relative_to='stick_link1'>0 0 0.121 1.5707963267948959 0 0</pose>
+      <parent>stick_link1</parent>
+      <child>servo_link1</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <damping>1</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='servo_link1'>
+      <pose relative_to='servoJoint1'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>0.10000000000000001</mass>
+        <inertia>
+          <ixx>1.524375e-05</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1.524375e-05</iyy>
+          <iyz>0</iyz>
+          <izz>2.2050000000000001e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='servo_link1_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.022499999999999999</length>
+            <radius>0.021000000000000001</radius>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name='servo_link1_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.022499999999999999</length>
+            <radius>0.021000000000000001</radius>
+          </cylinder>
+        </geometry>
+        <material>
+          <diffuse>0 1 1 1</diffuse>
+          <ambient>0 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='rotorJoint1' type='revolute'>
+      <pose relative_to='servo_link1'>0.021000000000000001 0 0 0 1.5707963267948966 0</pose>
+      <parent>servo_link1</parent>
+      <child>rotor_link1</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <damping>1</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='rotor_link1'>
+      <pose relative_to='rotorJoint1'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0.01125 0 0 0</pose>
+        <mass>0.040000000000000001</mass>
+        <inertia>
+          <ixx>6.0974999999999996e-06</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>6.0974999999999996e-06</iyy>
+          <iyz>0</iyz>
+          <izz>8.8200000000000003e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='rotor_link1_collision'>
+        <pose>0 0 0.01125 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.022499999999999999</length>
+            <radius>0.021000000000000001</radius>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name='rotor_link1_visual'>
+        <pose>0 0 0.01125 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.022499999999999999</length>
+            <radius>0.021000000000000001</radius>
+          </cylinder>
+        </geometry>
+        <material>
+          <diffuse>0 1 1 1</diffuse>
+          <ambient>0 1 1 1</ambient>
+        </material>
+      </visual>
+      <visual name='rotor_link1_visual_1'>
+        <pose>0 0 0.0275 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.01 0.13 0.01</size>
+          </box>
+        </geometry>
+        <material>
+          <diffuse>1 0 1 0.5</diffuse>
+          <ambient>1 0 1 0.5</ambient>
+        </material>
+      </visual>
+      <visual name='rotor_link1_visual_2'>
+        <pose>0 0 0.0275 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.13 0.01 0.01</size>
+          </box>
+        </geometry>
+        <material>
+          <diffuse>0 0 1 0.5</diffuse>
+          <ambient>0 0 1 0.5</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='stickJoint2' type='revolute'>
+      <pose relative_to='base_link'>-0.045961940765000001 0.045961940765000001 0.52500000000000002 -0.78539816339744839 -1.5707963267948966 0</pose>
+      <parent>base_link</parent>
+      <child>stick_link2</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <damping>1</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='stick_link2'>
+      <pose relative_to='stickJoint2'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0.050000000000000003 0 0 0</pose>
+        <mass>0.059999999999999998</mass>
+        <inertia>
+          <ixx>5.0843750000000013e-05</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>5.0843750000000013e-05</iyy>
+          <iyz>0</iyz>
+          <izz>1.6874999999999999e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='stick_link2_collision'>
+        <pose>0 0 0.050000000000000003 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.10000000000000001</length>
+            <radius>0.0074999999999999997</radius>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name='stick_link2_visual'>
+        <pose>0 0 0.050000000000000003 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.10000000000000001</length>
+            <radius>0.0074999999999999997</radius>
+          </cylinder>
+        </geometry>
+        <material>
+          <diffuse>0 1 1 1</diffuse>
+          <ambient>0 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='servoJoint2' type='revolute'>
+      <pose relative_to='stick_link2'>0 0 0.121 1.5707963267948959 0 0</pose>
+      <parent>stick_link2</parent>
+      <child>servo_link2</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <damping>1</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='servo_link2'>
+      <pose relative_to='servoJoint2'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>0.10000000000000001</mass>
+        <inertia>
+          <ixx>1.524375e-05</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1.524375e-05</iyy>
+          <iyz>0</iyz>
+          <izz>2.2050000000000001e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='servo_link2_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.022499999999999999</length>
+            <radius>0.021000000000000001</radius>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name='servo_link2_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.022499999999999999</length>
+            <radius>0.021000000000000001</radius>
+          </cylinder>
+        </geometry>
+        <material>
+          <diffuse>0 1 1 1</diffuse>
+          <ambient>0 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='rotorJoint2' type='revolute'>
+      <pose relative_to='servo_link2'>0.021000000000000001 0 0 0 1.5707963267948966 0</pose>
+      <parent>servo_link2</parent>
+      <child>rotor_link2</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <damping>1</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='rotor_link2'>
+      <pose relative_to='rotorJoint2'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0.01125 0 0 0</pose>
+        <mass>0.040000000000000001</mass>
+        <inertia>
+          <ixx>6.0974999999999996e-06</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>6.0974999999999996e-06</iyy>
+          <iyz>0</iyz>
+          <izz>8.8200000000000003e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='rotor_link2_collision'>
+        <pose>0 0 0.01125 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.022499999999999999</length>
+            <radius>0.021000000000000001</radius>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name='rotor_link2_visual'>
+        <pose>0 0 0.01125 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.022499999999999999</length>
+            <radius>0.021000000000000001</radius>
+          </cylinder>
+        </geometry>
+        <material>
+          <diffuse>0 1 1 1</diffuse>
+          <ambient>0 1 1 1</ambient>
+        </material>
+      </visual>
+      <visual name='rotor_link2_visual_1'>
+        <pose>0 0 0.0275 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.01 0.13 0.01</size>
+          </box>
+        </geometry>
+        <material>
+          <diffuse>1 0 1 0.5</diffuse>
+          <ambient>1 0 1 0.5</ambient>
+        </material>
+      </visual>
+      <visual name='rotor_link2_visual_2'>
+        <pose>0 0 0.0275 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.13 0.01 0.01</size>
+          </box>
+        </geometry>
+        <material>
+          <diffuse>0 0 1 0.5</diffuse>
+          <ambient>0 0 1 0.5</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='stickJoint3' type='revolute'>
+      <pose relative_to='base_link'>0.045961940765000001 -0.045961940765000001 0.52500000000000002 2.3561944901923448 -1.5707963267948966 0</pose>
+      <parent>base_link</parent>
+      <child>stick_link3</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <damping>1</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='stick_link3'>
+      <pose relative_to='stickJoint3'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0.050000000000000003 0 0 0</pose>
+        <mass>0.059999999999999998</mass>
+        <inertia>
+          <ixx>5.0843750000000013e-05</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>5.0843750000000013e-05</iyy>
+          <iyz>0</iyz>
+          <izz>1.6874999999999999e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='stick_link3_collision'>
+        <pose>0 0 0.050000000000000003 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.10000000000000001</length>
+            <radius>0.0074999999999999997</radius>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name='stick_link3_visual'>
+        <pose>0 0 0.050000000000000003 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.10000000000000001</length>
+            <radius>0.0074999999999999997</radius>
+          </cylinder>
+        </geometry>
+        <material>
+          <diffuse>0 1 1 1</diffuse>
+          <ambient>0 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='servoJoint3' type='revolute'>
+      <pose relative_to='stick_link3'>0 0 0.121 1.5707963267948959 0 0</pose>
+      <parent>stick_link3</parent>
+      <child>servo_link3</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <damping>1</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='servo_link3'>
+      <pose relative_to='servoJoint3'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>0.10000000000000001</mass>
+        <inertia>
+          <ixx>1.524375e-05</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1.524375e-05</iyy>
+          <iyz>0</iyz>
+          <izz>2.2050000000000001e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='servo_link3_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.022499999999999999</length>
+            <radius>0.021000000000000001</radius>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name='servo_link3_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.022499999999999999</length>
+            <radius>0.021000000000000001</radius>
+          </cylinder>
+        </geometry>
+        <material>
+          <diffuse>0 1 1 1</diffuse>
+          <ambient>0 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='rotorJoint3' type='revolute'>
+      <pose relative_to='servo_link3'>0.021000000000000001 0 0 0 1.5707963267948966 0</pose>
+      <parent>servo_link3</parent>
+      <child>rotor_link3</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <damping>1</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='rotor_link3'>
+      <pose relative_to='rotorJoint3'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0.01125 0 0 0</pose>
+        <mass>0.040000000000000001</mass>
+        <inertia>
+          <ixx>6.0974999999999996e-06</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>6.0974999999999996e-06</iyy>
+          <iyz>0</iyz>
+          <izz>8.8200000000000003e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='rotor_link3_collision'>
+        <pose>0 0 0.01125 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.022499999999999999</length>
+            <radius>0.021000000000000001</radius>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name='rotor_link3_visual'>
+        <pose>0 0 0.01125 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.022499999999999999</length>
+            <radius>0.021000000000000001</radius>
+          </cylinder>
+        </geometry>
+        <material>
+          <diffuse>0 1 1 1</diffuse>
+          <ambient>0 1 1 1</ambient>
+        </material>
+      </visual>
+      <visual name='rotor_link3_visual_1'>
+        <pose>0 0 0.0275 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.01 0.13 0.01</size>
+          </box>
+        </geometry>
+        <material>
+          <diffuse>1 0 1 0.5</diffuse>
+          <ambient>1 0 1 0.5</ambient>
+        </material>
+      </visual>
+      <visual name='rotor_link3_visual_2'>
+        <pose>0 0 0.0275 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.13 0.01 0.01</size>
+          </box>
+        </geometry>
+        <material>
+          <diffuse>0 0 1 0.5</diffuse>
+          <ambient>0 0 1 0.5</ambient>
+        </material>
+      </visual>
+    </link>
+    <plugin name='gz::sim::systems::MulticopterMotorModel' filename='gz-sim-multicopter-motor-model-system'>
+      <jointName>rotorJoint0</jointName>
+      <linkName>rotor_link0</linkName>
+      <turningDirection>cw</turningDirection>
+      <timeConstantUp>0.0125</timeConstantUp>
+      <timeConstantDown>0.025</timeConstantDown>
+      <maxRotVelocity>1000.0</maxRotVelocity>
+      <motorConstant>1.5e-05</motorConstant>
+      <momentConstant>0.1</momentConstant>
+      <commandSubTopic>command/motor_speed</commandSubTopic>
+      <motorNumber>0</motorNumber>
+      <rotorDragCoefficient>8.06428e-05</rotorDragCoefficient>
+      <rollingMomentCoefficient>8.7e-06</rollingMomentCoefficient>
+      <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
+      <motorType>velocity</motorType>
+    </plugin>
+    <plugin name='gz::sim::systems::MulticopterMotorModel' filename='gz-sim-multicopter-motor-model-system'>
+      <jointName>rotorJoint1</jointName>
+      <linkName>rotor_link1</linkName>
+      <turningDirection>cw</turningDirection>
+      <timeConstantUp>0.0125</timeConstantUp>
+      <timeConstantDown>0.025</timeConstantDown>
+      <maxRotVelocity>1000.0</maxRotVelocity>
+      <motorConstant>1.5e-05</motorConstant>
+      <momentConstant>0.1</momentConstant>
+      <commandSubTopic>command/motor_speed</commandSubTopic>
+      <motorNumber>1</motorNumber>
+      <rotorDragCoefficient>8.06428e-05</rotorDragCoefficient>
+      <rollingMomentCoefficient>8.7e-06</rollingMomentCoefficient>
+      <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
+      <motorType>velocity</motorType>
+    </plugin>
+    <plugin name='gz::sim::systems::MulticopterMotorModel' filename='gz-sim-multicopter-motor-model-system'>
+      <jointName>rotorJoint2</jointName>
+      <linkName>rotor_link2</linkName>
+      <turningDirection>ccw</turningDirection>
+      <timeConstantUp>0.0125</timeConstantUp>
+      <timeConstantDown>0.025</timeConstantDown>
+      <maxRotVelocity>1000.0</maxRotVelocity>
+      <motorConstant>1.5e-05</motorConstant>
+      <momentConstant>0.1</momentConstant>
+      <commandSubTopic>command/motor_speed</commandSubTopic>
+      <motorNumber>2</motorNumber>
+      <rotorDragCoefficient>8.06428e-05</rotorDragCoefficient>
+      <rollingMomentCoefficient>8.7e-06</rollingMomentCoefficient>
+      <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
+      <motorType>velocity</motorType>
+    </plugin>
+    <plugin name='gz::sim::systems::MulticopterMotorModel' filename='gz-sim-multicopter-motor-model-system'>
+      <jointName>rotorJoint3</jointName>
+      <linkName>rotor_link3</linkName>
+      <turningDirection>ccw</turningDirection>
+      <timeConstantUp>0.0125</timeConstantUp>
+      <timeConstantDown>0.025</timeConstantDown>
+      <maxRotVelocity>1000.0</maxRotVelocity>
+      <motorConstant>1.5e-05</motorConstant>
+      <momentConstant>0.1</momentConstant>
+      <commandSubTopic>command/motor_speed</commandSubTopic>
+      <motorNumber>3</motorNumber>
+      <rotorDragCoefficient>8.06428e-05</rotorDragCoefficient>
+      <rollingMomentCoefficient>8.7e-06</rollingMomentCoefficient>
+      <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
+      <motorType>velocity</motorType>
+    </plugin>
+    <plugin name='gz::sim::systems::JointStatePublisher' filename='gz-sim-joint-state-publisher-system'/>
+    <plugin name='gz::sim::systems::JointPositionController' filename='gz-sim-joint-position-controller-system'>
+      <joint_name>stickJoint0</joint_name>
+      <initial_position>0</initial_position>
+      <sub_topic>servo_0</sub_topic>
+      <p_gain>35</p_gain>
+      <d_gain>0.18</d_gain>
+    </plugin>
+    <plugin name='gz::sim::systems::JointPositionController' filename='gz-sim-joint-position-controller-system'>
+      <joint_name>servoJoint0</joint_name>
+      <initial_position>0</initial_position>
+      <sub_topic>servo_4</sub_topic>
+      <p_gain>35</p_gain>
+      <d_gain>0.18</d_gain>
+    </plugin>
+    <plugin name='gz::sim::systems::JointPositionController' filename='gz-sim-joint-position-controller-system'>
+      <joint_name>stickJoint1</joint_name>
+      <initial_position>0</initial_position>
+      <sub_topic>servo_1</sub_topic>
+      <p_gain>35</p_gain>
+      <d_gain>0.18</d_gain>
+    </plugin>
+    <plugin name='gz::sim::systems::JointPositionController' filename='gz-sim-joint-position-controller-system'>
+      <joint_name>servoJoint1</joint_name>
+      <initial_position>0</initial_position>
+      <sub_topic>servo_5</sub_topic>
+      <p_gain>35</p_gain>
+      <d_gain>0.18</d_gain>
+    </plugin>
+    <plugin name='gz::sim::systems::JointPositionController' filename='gz-sim-joint-position-controller-system'>
+      <joint_name>stickJoint2</joint_name>
+      <initial_position>0</initial_position>
+      <sub_topic>servo_2</sub_topic>
+      <p_gain>35</p_gain>
+      <d_gain>0.18</d_gain>
+    </plugin>
+    <plugin name='gz::sim::systems::JointPositionController' filename='gz-sim-joint-position-controller-system'>
+      <joint_name>servoJoint2</joint_name>
+      <initial_position>0</initial_position>
+      <sub_topic>servo_6</sub_topic>
+      <p_gain>35</p_gain>
+      <d_gain>0.18</d_gain>
+    </plugin>
+    <plugin name='gz::sim::systems::JointPositionController' filename='gz-sim-joint-position-controller-system'>
+      <joint_name>stickJoint3</joint_name>
+      <initial_position>0</initial_position>
+      <sub_topic>servo_3</sub_topic>
+      <p_gain>35</p_gain>
+      <d_gain>0.18</d_gain>
+    </plugin>
+    <plugin name='gz::sim::systems::JointPositionController' filename='gz-sim-joint-position-controller-system'>
+      <joint_name>servoJoint3</joint_name>
+      <initial_position>0</initial_position>
+      <sub_topic>servo_7</sub_topic>
+      <p_gain>35</p_gain>
+      <d_gain>0.18</d_gain>
+    </plugin>
+    <frame name='base_joint' attached_to='base_link'>
+      <pose>0 0 0.5 0 0 0</pose>
+    </frame>
+    <frame name='drone_link' attached_to='base_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+  </model>
+</sdf>
